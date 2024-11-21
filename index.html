@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criador de Instância WhatsApp</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Criador de Instância WhatsApp</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <form id="instanceForm">
+                    <div class="mb-3">
+                        <label for="nome" class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="nome" required placeholder="Nome da Empresa">
+                    </div>
+                    <div class="mb-3">
+                        <label for="whatsappBot" class="form-label">WhatsApp Para Conectar o BOT</label>
+                        <input type="tel" class="form-control" id="whatsappBot" required placeholder="Ex: 5585988775566">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Criar Instância</button>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <h4 class="mb-3">Status da Instância</h4>
+                <div id="qrCodeContainer" class="qr-code-placeholder mb-3">
+                    QR Code será exibido aqui
+                </div>
+                <div id="connectionStatus" class="alert alert-info">
+                    Aguardando criação da instância...
+                </div>
+                <div id="countdown" class="text-danger"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
