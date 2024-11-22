@@ -4,40 +4,192 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Criador de Instância WhatsApp</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100%;
+        }
+        .container {
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #166534, #16a34a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 56rem;
+            border: 2px solid #16a34a;
+        }
+        .card-header {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #166534;
+            margin-bottom: 0.5rem;
+        }
+        .card-description {
+            color: black;
+            font-size: 0.875rem;
+        }
+        .card-content {
+            padding: 1.5rem;
+        }
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+        @media (min-width: 768px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.25rem;
+        }
+        button {
+            width: 100%;
+            padding: 0.5rem;
+            background-color: #166534;
+            color: white;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        button:hover {
+            background-color: #15803d;
+        }
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .qr-code-placeholder {
+            background-color: #f3f4f6;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .alert {
+            background-color: #f3f4f6;
+            border-radius: 0.25rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        .alert-title {
+            font-weight: bold;
+            color: #166534;
+            margin-bottom: 0.5rem;
+        }
+        .countdown {
+            color: #dc2626;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        .card-footer {
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+    </style>
 </head>
 <body>
-    <div class="container mt-5">
-        <h1 class="mb-4">Criador de Instância WhatsApp</h1>
-        <div class="row">
-            <div class="col-md-6">
-                <form id="instanceForm">
-                    <div class="mb-3">
-                        <label for="nome" class="form-label">Nome</label>
-                        <input type="text" class="form-control" id="nome" required placeholder="Nome da Empresa">
-                    </div>
-                    <div class="mb-3">
-                        <label for="whatsappBot" class="form-label">WhatsApp Para Conectar o BOT</label>
-                        <input type="tel" class="form-control" id="whatsappBot" required placeholder="Ex: 5585988775566">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Criar Instância</button>
-                </form>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h1 class="card-title">Criador de Instância WhatsApp</h1>
+                <p class="card-description">Crie e gerencie suas instâncias do WhatsApp facilmente</p>
             </div>
-            <div class="col-md-6">
-                <h4 class="mb-3">Status da Instância</h4>
-                <div id="qrCodeContainer" class="qr-code-placeholder mb-3">
-                    QR Code será exibido aqui
+            <div class="card-content">
+                <div class="grid">
+                    <div>
+                        <form id="instanceForm">
+                            <div class="form-group">
+                                <label for="nome">Nome da Empresa</label>
+                                <input type="text" id="nome" placeholder="Ex: Minha Empresa" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="whatsappBot">WhatsApp Para Conectar o BOT</label>
+                                <input type="tel" id="whatsappBot" placeholder="Ex: 5585988775566" required>
+                            </div>
+                            <button type="submit" id="submitButton">
+                                <span id="buttonText">Criar Instância</span>
+                            </button>
+                        </form>
+                    </div>
+                    <div>
+                        <h4 style="font-weight: 600; margin-bottom: 1rem; color: #166534;">Status da Instância</h4>
+                        <div class="qr-code-placeholder">
+                            QR Code será exibido aqui
+                        </div>
+                        <div class="alert">
+                            <div class="alert-title">Status</div>
+                            <div id="connectionStatus">Aguardando criação da instância...</div>
+                        </div>
+                        <p id="countdown" class="countdown"></p>
+                    </div>
                 </div>
-                <div id="connectionStatus" class="alert alert-info">
-                    Aguardando criação da instância...
-                </div>
-                <div id="countdown" class="text-danger"></div>
+            </div>
+            <div class="card-footer">
+                © 2024 Automatiza Comea - Criador de Instância WhatsApp. Todos os direitos reservados.
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
+    <script>
+        document.getElementById('instanceForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const button = document.getElementById('submitButton');
+            const buttonText = document.getElementById('buttonText');
+            const connectionStatus = document.getElementById('connectionStatus');
+            const countdown = document.getElementById('countdown');
+
+            button.disabled = true;
+            buttonText.textContent = 'Criando Instância...';
+            
+            setTimeout(() => {
+                button.disabled = false;
+                buttonText.textContent = 'Criar Instância';
+                connectionStatus.textContent = 'Instância criada. Aguardando conexão...';
+                
+                let count = 60;
+                const timer = setInterval(() => {
+                    countdown.textContent = `Tempo restante: ${count} segundos`;
+                    count--;
+                    if (count < 0) {
+                        clearInterval(timer);
+                        countdown.textContent = '';
+                        connectionStatus.textContent = 'Tempo esgotado. Tente novamente.';
+                    }
+                }, 1000);
+            }, 2000);
+        });
+    </script>
 </body>
 </html>
