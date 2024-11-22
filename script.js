@@ -52,7 +52,9 @@ async function checkConnection() {
     try {
         const response = await fetch('https://serven8.automatizacomea.cloud/webhook-test/Analisar_Instacia', {
             method: 'GET',
-            headers: { 'Content-Type': 'application/json' }
+            headers: {
+                'Content-Type': 'application/json'
+            }
         });
 
         if (response.ok) {
