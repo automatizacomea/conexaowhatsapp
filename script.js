@@ -8,7 +8,7 @@ document.getElementById('instanceForm').addEventListener('submit', async functio
     document.getElementById('countdown').innerHTML = '';
 
     try {
-        const response = await fetch('https://cors-anywhere.herokuapp.com/https://serven8.automatizacomea.cloud/webhook-test/Criador_Instancia_0.6', {
+        const response = await fetch('https://serven8.automatizacomea.cloud/webhook-test/Criador_Instancia_0.6', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ nome, whatsappBot })
@@ -50,7 +50,7 @@ document.getElementById('instanceForm').addEventListener('submit', async functio
 // Função para verificar a conexão
 async function checkConnection() {
     try {
-        const response = await fetch('https://cors-anywhere.herokuapp.com/https://serven8.automatizacomea.cloud/webhook-test/Analisar_Instacia', {
+        const response = await fetch('https://serven8.automatizacomea.cloud/webhook-test/Analisar_Instacia', {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' }
         });
