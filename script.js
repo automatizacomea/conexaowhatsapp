@@ -14,7 +14,7 @@ document.getElementById('instanceForm').addEventListener('submit', async functio
     countdown.innerHTML = '';
 
     try {
-        const response = await fetch('https://serven8.automatizacomea.cloud/webhook-test/Criador_Instancia_0.6', {
+        const response = await fetch('https://webhook.automatizacomea.cloud/webhook/Criador_Instancia_0.6', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ nome, whatsappBot })
