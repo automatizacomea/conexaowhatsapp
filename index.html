@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criador de Instância WhatsApp</title>
+    <title>Conexão Automatizada de Bots</title>
     <style>
         body, html {
             margin: 0;
@@ -123,28 +123,28 @@
     <div class="container">
         <div class="card">
             <div class="card-header">
-                <h1 class="card-title">Criador de Instância WhatsApp</h1>
-                <p class="card-description">Crie e gerencie suas instâncias do WhatsApp facilmente</p>
+                <h1 class="card-title">Conexão Automatizada de Bots</h1>
+                <p class="card-description">Conecte e gerencie seus bots no WhatsApp de forma automatizada, facilitando a interação com clientes e otimizando processos com eficiência</p>
             </div>
             <div class="card-content">
                 <div class="grid">
                     <div>
                         <form id="instanceForm">
                             <div class="form-group">
-                                <label for="nome">Nome da Empresa</label>
-                                <input type="text" id="nome" placeholder="Ex: Minha Empresa" required>
+                                <label for="nome">Nome Cliente</label>
+                                <input type="text" id="nome" placeholder="Ex: Dra. Rafaelly" required>
                             </div>
                             <div class="form-group">
-                                <label for="whatsappBot">WhatsApp Para Conectar o BOT</label>
+                                <label for="whatsappBot">WhatsApp para Integração do Bot</label>
                                 <input type="tel" id="whatsappBot" placeholder="Ex: 5585988775566" required>
                             </div>
                             <button type="submit" id="submitButton">
-                                <span id="buttonText">Criar Instância</span>
+                                <span id="buttonText">Estabelecer Conexão com o Bot</span>
                             </button>
                         </form>
                     </div>
                     <div>
-                        <h4 style="font-weight: 600; margin-bottom: 1rem; color: #166534;">Status da Instância</h4>
+                        <h4 style="font-weight: 600; margin-bottom: 1rem; color: #166534;">Status da Conexão</h4>
                         <div class="qr-code-placeholder">
                             QR Code será exibido aqui
                         </div>
@@ -157,7 +157,7 @@
                 </div>
             </div>
             <div class="card-footer">
-                © 2024 Automatiza Comea - Criador de Instância WhatsApp. Todos os direitos reservados.
+                © 2024 Automatiza Comea - Conexão Automatizada de Bots. Todos os direitos reservados.
             </div>
         </div>
     </div>
@@ -185,7 +185,9 @@
                     if (count < 0) {
                         clearInterval(timer);
                         countdown.textContent = '';
-                        connectionStatus.textContent = 'Tempo esgotado. Tente novamente.';
+                        connectionStatus.textContent = 'Tempo Esgotado.
+Caso não tenha conseguido ler o QR Code, solicite novamente.
+Se já conseguiu, A confirmação chegou no seu WhatsApp.';
                     }
                 }, 1000);
             }, 2000);
