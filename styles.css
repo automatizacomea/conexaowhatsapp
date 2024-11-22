@@ -1,15 +1,128 @@
-body {
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100%;
     background-color: #f8f9fa;
 }
-
-.qr-code-placeholder {
-    width: 200px;
-    height: 200px;
-    background-color: #e9ecef;
+.container {
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #166534, #16a34a);
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 1rem;
+}
+.card {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 56rem;
+    border: 2px solid #16a34a;
+}
+.card-header {
+    padding: 1.5rem;
+    text-align: center;
+}
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #166534;
+    margin-bottom: 0.5rem;
+}
+.card-description {
+    color: black;
+    font-size: 0.875rem;
+}
+.card-content {
+    padding: 1.5rem;
+}
+.grid {
+    display: grid;
+    gap: 1.5rem;
+}
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+.form-group {
+    margin-bottom: 1rem;
+}
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.25rem;
+}
+button {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #166534;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+button:hover {
+    background-color: #15803d;
+}
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.qr-code-placeholder {
+    background-color: #e9ecef;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
     font-size: 0.9rem;
     color: #6c757d;
     text-align: center;
+}
+.alert {
+    background-color: #f3f4f6;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+.alert-title {
+    font-weight: bold;
+    color: #166534;
+    margin-bottom: 0.5rem;
+}
+.countdown {
+    color: #dc2626;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+.card-footer {
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+.alert-success {
+    background-color: #d1e7dd;
+    color: #0f5132;
+    padding: 1rem;
+    border-radius: 0.25rem;
+}
+.status-title {
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #166534;
 }
