@@ -93,8 +93,8 @@ function startCountdown() {
         if (timeRemaining <= 0) {
             clearInterval(countdownInterval);
             document.getElementById('countdown').innerHTML = 'Tempo Esgotado.
-Caso não tenha conseguido ler o QR Code, solicite novamente.
-Se já conseguiu, verifique a confirmação no seu WhatsApp.';
+Caso não tenha conseguido ler o QR Code, solicite novamente,
+Caso já conseguiu, verifique a confirmação no seu WhatsApp.';
             document.getElementById('qrCodeContainer').innerHTML = 'QR Code expirado';
         }
     }, 1000);
