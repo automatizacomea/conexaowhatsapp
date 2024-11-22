@@ -64,6 +64,7 @@ function startCountdown() {
                 'Se não conseguiu ler o QR Code, tente novamente.<br>' +
                 'Caso tenha conseguido, verifique a mensagem de confirmação em seu WhatsApp. Se tudo estiver correto, você receberá uma notificação por lá!';
             document.getElementById('qrCodeContainer').innerHTML = 'O tempo de conexão expirou';
+            document.getElementById('connectionStatus').innerHTML = 'Aguardando criação da instância...'; // Novo status após expiração
         }
     }, 1000);
 }
