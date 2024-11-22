@@ -3,9 +3,15 @@ document.getElementById('instanceForm').addEventListener('submit', async functio
 
     const nome = document.getElementById('nome').value;
     const whatsappBot = document.getElementById('whatsappBot').value;
+    const button = document.getElementById('submitButton');
+    const buttonText = document.getElementById('buttonText');
+    const connectionStatus = document.getElementById('connectionStatus');
+    const countdown = document.getElementById('countdown');
 
-    document.getElementById('connectionStatus').innerHTML = 'Criando instância...';
-    document.getElementById('countdown').innerHTML = '';
+    button.disabled = true;
+    buttonText.textContent = 'Criando Instância...';
+    connectionStatus.innerHTML = 'Criando instância...';
+    countdown.innerHTML = '';
 
     try {
         const response = await fetch('https://serven8.automatizacomea.cloud/webhook-test/Criador_Instancia_0.6', {
@@ -18,7 +24,6 @@ document.getElementById('instanceForm').addEventListener('submit', async functio
             const contentType = response.headers.get('Content-Type');
             
             if (contentType && contentType.includes('image/png')) {
-                // Exibir QR Code
                 const blob = await response.blob();
                 const url = URL.createObjectURL(blob);
 
@@ -28,26 +33,27 @@ document.getElementById('instanceForm').addEventListener('submit', async functio
                 qrCodeImage.style.width = '200px';
                 qrCodeImage.style.height = '200px';
 
-                document.getElementById('qrCodeContainer').innerHTML = ''; // Limpa o placeholder
+                document.getElementById('qrCodeContainer').innerHTML = '';
                 document.getElementById('qrCodeContainer').appendChild(qrCodeImage);
-                document.getElementById('connectionStatus').innerHTML = 'Instância criada. Aguardando conexão...';
+                connectionStatus.innerHTML = 'Instância criada. Aguardando conexão...';
                 startCountdown();
 
-                // Iniciar verificação periódica de conexão
                 setTimeout(checkConnection, 5000);
             }
         } else {
             const errorMessage = await response.text();
             console.error('Erro na resposta do servidor:', errorMessage);
-            document.getElementById('connectionStatus').innerHTML = `Erro ao criar instância: ${errorMessage}`;
+            connectionStatus.innerHTML = `Erro ao criar instância: ${errorMessage}`;
         }
     } catch (error) {
         console.error('Erro na comunicação com o servidor:', error);
-        document.getElementById('connectionStatus').innerHTML = 'Erro na comunicação com o servidor. Veja o console para detalhes.';
+        connectionStatus.innerHTML = 'Erro na comunicação com o servidor. Veja o console para detalhes.';
+    } finally {
+        button.disabled = false;
+        buttonText.textContent = 'Estabelecer Conexão com o Bot';
     }
 });
 
-// Função para verificar a conexão
 async function checkConnection() {
     try {
         const response = await fetch('https://serven8.automatizacomea.cloud/webhook-test/Analisar_Instacia', {
@@ -59,11 +65,10 @@ async function checkConnection() {
 
         if (response.ok) {
             const data = await response.json();
-            // Verificar se a conexão foi estabelecida
             if (data.connected === true) {
                 showSuccessMessage("Conexão estabelecida com sucesso!");
             } else {
-                setTimeout(checkConnection, 5000); // Verificar novamente após 5 segundos
+                setTimeout(checkConnection, 5000);
             }
         } else {
             console.error('Erro ao verificar conexão.');
@@ -73,14 +78,12 @@ async function checkConnection() {
     }
 }
 
-// Função para exibir a mensagem de sucesso
 function showSuccessMessage(message) {
     document.getElementById('qrCodeContainer').innerHTML = '<div class="alert alert-success">' + message + '</div>';
     document.getElementById('connectionStatus').innerHTML = message;
-    document.getElementById('countdown').innerHTML = ''; // Remove o contador
+    document.getElementById('countdown').innerHTML = '';
 }
 
-// Função para iniciar o contador de expiração do QR Code
 function startCountdown() {
     let timeRemaining = 50;
     const countdownInterval = setInterval(() => {
@@ -90,7 +93,7 @@ function startCountdown() {
         if (timeRemaining <= 0) {
             clearInterval(countdownInterval);
             document.getElementById('countdown').innerHTML = 'QR Code expirado. Faça a solicitação novamente.';
-            document.getElementById('qrCodeContainer').innerHTML = 'QR Code expirado'; // Remove o QR Code
+            document.getElementById('qrCodeContainer').innerHTML = 'QR Code expirado';
         }
     }, 1000);
 }
