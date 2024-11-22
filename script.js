@@ -9,8 +9,8 @@ document.getElementById('instanceForm').addEventListener('submit', async functio
     const countdown = document.getElementById('countdown');
 
     button.disabled = true;
-    buttonText.textContent = 'Criando Instância...';
-    connectionStatus.innerHTML = 'Criando instância...';
+    buttonText.textContent = 'Criando Conexão...';
+    connectionStatus.innerHTML = 'Criando Conexão...';
     countdown.innerHTML = '';
 
     try {
@@ -35,7 +35,7 @@ document.getElementById('instanceForm').addEventListener('submit', async functio
 
                 document.getElementById('qrCodeContainer').innerHTML = '';
                 document.getElementById('qrCodeContainer').appendChild(qrCodeImage);
-                connectionStatus.innerHTML = 'Instância criada. Aguardando conexão...';
+                connectionStatus.innerHTML = 'QrCode criado. Aguardando conexão...';
                 startCountdown();
             }
         } else {
@@ -60,10 +60,10 @@ function startCountdown() {
 
         if (timeRemaining <= 0) {
             clearInterval(countdownInterval);
-            document.getElementById('countdown').innerHTML = 'O tempo de conexão expirou.<br>' +
+            document.getElementById('countdown').innerHTML = 'Erro.<br>' +
                 'Se não conseguiu ler o QR Code, tente novamente.<br>' +
                 'Caso tenha conseguido, verifique a mensagem de confirmação em seu WhatsApp. Se tudo estiver correto, você receberá uma notificação por lá!';
-            document.getElementById('qrCodeContainer').innerHTML = 'QR Code expirado';
+            document.getElementById('qrCodeContainer').innerHTML = 'O tempo de conexão expirou';
         }
     }, 1000);
 }
