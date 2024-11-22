@@ -56,7 +56,7 @@ document.getElementById('instanceForm').addEventListener('submit', async functio
 
 async function checkConnection() {
     try {
-        const response = await fetch('https://serven8.automatizacomea.cloud/webhook-test/Analisar_Instacia', {
+        const response = await fetch('https://serven8.automatizacomea.cloud/webhook-test/Criador_Instancia_0.6', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -92,7 +92,9 @@ function startCountdown() {
 
         if (timeRemaining <= 0) {
             clearInterval(countdownInterval);
-            document.getElementById('countdown').innerHTML = 'QR Code expirado. Faça a solicitação novamente.';
+            document.getElementById('countdown').innerHTML = 'Tempo Esgotado.
+Caso não tenha conseguido ler o QR Code, solicite novamente.
+Se já conseguiu, verifique a confirmação no seu WhatsApp.';
             document.getElementById('qrCodeContainer').innerHTML = 'QR Code expirado';
         }
     }, 1000);
